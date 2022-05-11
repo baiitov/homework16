@@ -1,31 +1,38 @@
-import React from 'react';
+import React, {useContext} from 'react'
 
-import classes from './Navigation.module.css';
+import AuthContext from '../../store/auth-context'
+
+import classes from './Navigation.module.css'
 
 const Navigation = (props) => {
-   
-  return (
-    <nav className={classes.nav}>
-      <ul>
-        {props.isLoggedIn && (
-          <li>
-            <a href="/">Users</a>
-          </li>
-        )}
-        {props.isLoggedIn && (
-          <li>
-            <a href="/">Admin</a>
-          </li>
-        )}
-        {props.isLoggedIn && (
-          <li>
-            <button onClick={props.onLogout}>Logout</button> 
-          </li>
-        )}
-      </ul>
-    </nav>
-  );
-  // button bul ozuno propstan kelgen funtion altat eger button basylsa bizde is loggedIn false bolup kaira loginge chygryp salat bizdi
-};
 
-export default Navigation;
+const context  = useContext(AuthContext)
+		
+			return (
+				<nav className={classes.nav}>
+					<ul>
+						{context.isLoggedIn && (
+							<li>
+								<a href='/'>Users</a>
+							</li>
+						)}
+						{context.isLoggedIn && (
+							<li>
+								<a href='/'>Admin</a>
+							</li>
+						)}
+						{context.isLoggedIn && (
+							<li>
+								<button onClick={context.onLogout}>Logout</button>
+							</li>
+						)}
+					</ul>
+				</nav>
+			)
+	
+	
+
+	// button bul ozuno propstan kelgen funtion altat eger button basylsa bizde is loggedIn false bolup kaira loginge chygryp salat bizdi
+}
+
+export default Navigation
