@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 import Card from '../UI/Card/Card'
 import classes from './Login.module.css'
 import Button from '../UI/Button/Button'
-import { useReducer } from 'react'
+import { useReducer, useContext } from 'react'
+import AuthContext from '../../store/auth-context'
 // const emailReducer = (prevState, action) => {
 // 	if (action.type === 'INPUT_EMAIL') {
 // 		return {
@@ -63,6 +64,8 @@ const InputReducer = (prevState, action) => {
 	}
 }
 const Login = (props) => {
+	const color = useContext(AuthContext)
+	
 	const [inputState, dispatchInput] = useReducer(InputReducer, {
 		email: '',
 		emailIsValid: '',
@@ -143,7 +146,7 @@ const Login = (props) => {
 		props.onLogin(inputState.email, inputState.password)
 	}
 	return (
-		<Card className={classes.login}>
+		<Card className={` ${color.bacround ? classes.loginn : classes.login}`}>
 			<form onSubmit={submitHandler}>
 				<div
 					className={`${classes.control} ${

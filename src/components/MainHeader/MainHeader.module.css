@@ -1,4 +1,4 @@
-.main-header {
+.main_header {
   position: fixed;
   top: 0;
   left: 0;
@@ -8,6 +8,18 @@
   justify-content: space-between;
   align-items: center;
   background: #741188;
+  padding: 0 2rem;
+}
+.main__header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #008583;
   padding: 0 2rem;
 }
 

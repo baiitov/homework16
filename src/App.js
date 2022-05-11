@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
-
+import './App.css'
 import Login from './components/Login/Login'
 import Home from './components/Home/Home'
 import MainHeader from './components/MainHeader/MainHeader'
 import AuthContext from './store/auth-context'
 
 function App() {
+	const [bacround, setBacround] = useState(false)
+	console.log(bacround)
 	const [isLoggedIn, setIsLoggedIn] = useState(false) // бул хук бизге компоненттер качан чыгышын карап берет башында false болот бизге логинден данныйлар келсе true болуп бизке экинчи компанентти чыгарып берет
 	useEffect(() => {
 		const storedUserLoggedInfo = localStorage.getItem('isLoggedIn') //биз localStorega теги биздин данныйларды алып салыштырып жатабыз
@@ -32,11 +34,21 @@ function App() {
 	// eger isloggedIn(true) bolso mainHeader chygat ekranga rerender bolup
 	return (
 		<React.Fragment>
-			<AuthContext.Provider value={{isLoggedIn: isLoggedIn, onLogout: logoutHandler}}>
-				<MainHeader
-					
-				/>
-				<main>
+			<AuthContext.Provider
+				value={{
+					isLoggedIn: isLoggedIn,
+					onLogout: logoutHandler,
+					bacround,
+					setBacround,
+				}}
+			>
+				<MainHeader />
+				<main
+					style={{
+						height: '700px',
+						backgroundColor: !bacround ? 'white' : 'black',
+					}}
+				>
 					{!isLoggedIn && <Login onLogin={loginHandler} />}
 
 					{isLoggedIn && <Home onLogout={logoutHandler} />}
